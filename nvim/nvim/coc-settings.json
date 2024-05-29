@@ -1,0 +1,9 @@
+{
+    "languageserver": {
+        "zls": {
+            "command": "/Users/stonedhesus/Computer Science/language-servers/zls-0.12.0/zig-out/bin/zls",
+            "filetypes": ["zig"]
+        }
+    },
+    "zig.zls.path": "/Users/stonedhesus/.config/coc/extensions/coc-zls-data/zls_install/zls"
+}
