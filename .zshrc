@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="fletcherm"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -100,15 +100,82 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# Custom aliases 
+# opam configuration
+[[ ! -r /Users/stonedhesus/.opam/opam-init/init.zsh ]] || source /Users/stonedhesus/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# Environment variables.
+export EDITOR=nvim
+export LC_ALL=en_UK.UTF-8
+
+eval "$(starship init zsh)"
+alias back="z .."
+alias b="z .."
+alias h="cd ~"
+alias e="exa -lh"
+alias et="exa -lhT"
+alias ei="exa -lhi"
+alias ea="exa -lha"
+alias eai="exa -lhai"
+alias eait="exa -lhaiT"
+alias t="exa -T"
+alias tl="exa -T --long"
+alias c="clear"
+alias showkey="read -rsn 1 key; echo -n $'\e['"$(printf "%d" "'$key")"'; echo"
+alias zrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc'
+alias szrc='source ${ZDOTDIR:-$HOME}/.zshrc'
+alias nv='${=EDITOR} ${ZDOTDIR:-$HOME}/.config/nvim'
+alias l='ls -lFhG'
+alias l3="z ~/University/L3"
+alias ewc="z ${ZDOTDIR:-$HOME}/bin ; ./ewc"
 alias ed="nvim"
-alias b="cd .."
-alias gcw="cd ~/Github/currently-working-on"
-alias l3="cd ~/University/L3"
-alias e="exa"
-alias et="exa -T"
-alias ea="exa -a"
-alias eat="exa -aT"
-alias c="cd"
+alias d="cd"
+alias g="z ~/Github/"
+alias gcw="z ~/Github/currently-working-on/"
+alias m="mkdir"
+alias fos='function _formatoml() { ocamlformat "$1" --enable-outside-detected-project > temp.ml && mv temp.ml "$1"; }; _formatoml'
+alias ob="open ~/Desktop/books"
+alias s="scala"
+alias se="scala -explain"
+alias sc="scalac"
+alias nst="sbt new scala/scala3.g8"
+alias p="python3.12"
+alias pa="python3 -m dis"
+alias gccs="gcc -S"
+alias nf="neofetch"
+alias dip="dune init project"
+# TOFIX: there's an issue with the stanza when moving the contents of root, hence I will need to create a longer functionwhich will also update the `dune-project` configuration file.
+alias dipr="dune init project root && for file in root/*(D); do move $file .; done && rmdir root"
+alias light=osascript -e 'tell application "iTerm2" to tell current session of current window to set background color to {65535, 65535, 65535}'
+alias dark=osascript -e 'tell application "iTerm2" to tell current session of current window to set background color to {0, 0, 0}'
+alias ta="tar -czfv"
+alias jv="/usr/libexec/java_home -V"
+alias jpacks='open -a Safari "https://package-search.jetbrains.com/search?query=$1"'
+alias i="intellij"
+alias web="open -a 'Firefox Developer Edition'"
+alias zz="z -"
+source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /Users/stonedhesus/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Created by `pipx` on 2024-01-24 10:25:55
+export PATH="$PATH:/Users/stonedhesus/.local/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(zoxide init zsh)"
+
+export LC_ALL="en_UK.UTF-8"
+export LC_CTYPE="UTF-8"
+export LC_TERMINAL="iTerm2"
+export LANG="en_UK.UTF-8"
 
