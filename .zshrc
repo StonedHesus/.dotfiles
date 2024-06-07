@@ -70,7 +70,7 @@ ZSH_THEME="fletcherm"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,9 +103,9 @@ source $ZSH/oh-my-zsh.sh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+ # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 # opam configuration
 [[ ! -r /Users/stonedhesus/.opam/opam-init/init.zsh ]] || source /Users/stonedhesus/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
@@ -114,7 +114,7 @@ fi
 export EDITOR=nvim
 export LC_ALL=en_UK.UTF-8
 
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 alias back="z .."
 alias b="z .."
 alias h="cd ~"
@@ -131,6 +131,7 @@ alias showkey="read -rsn 1 key; echo -n $'\e['"$(printf "%d" "'$key")"'; echo"
 alias zrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc'
 alias szrc='source ${ZDOTDIR:-$HOME}/.zshrc'
 alias nv='${=EDITOR} ${ZDOTDIR:-$HOME}/.config/nvim'
+alias wt='${=EDITOR} ${ZDOTDIR:-$HOME}/.config/wezterm'
 alias l='ls -lFhG'
 alias l3="z ~/University/L3"
 alias ewc="z ${ZDOTDIR:-$HOME}/bin ; ./ewc"
@@ -138,6 +139,7 @@ alias ed="nvim"
 alias d="cd"
 alias g="z ~/Github/"
 alias gcw="z ~/Github/currently-working-on/"
+alias gco="z ~/Github/contributions"
 alias m="mkdir"
 alias fos='function _formatoml() { ocamlformat "$1" --enable-outside-detected-project > temp.ml && mv temp.ml "$1"; }; _formatoml'
 alias ob="open ~/Desktop/books"
@@ -145,7 +147,7 @@ alias s="scala"
 alias se="scala -explain"
 alias sc="scalac"
 alias nst="sbt new scala/scala3.g8"
-alias p="python3.12"
+alias p="python3"
 alias pa="python3 -m dis"
 alias gccs="gcc -S"
 alias nf="neofetch"
@@ -157,16 +159,11 @@ alias dark=osascript -e 'tell application "iTerm2" to tell current session of cu
 alias ta="tar -czfv"
 alias jv="/usr/libexec/java_home -V"
 alias jpacks='open -a Safari "https://package-search.jetbrains.com/search?query=$1"'
-alias i="intellij"
-alias web="open -a 'Firefox Developer Edition'"
+alias wb="open -na 'Brave Browser'"
 alias zz="z -"
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /Users/stonedhesus/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Created by `pipx` on 2024-01-24 10:25:55
 export PATH="$PATH:/Users/stonedhesus/.local/bin"
@@ -178,4 +175,11 @@ export LC_ALL="en_UK.UTF-8"
 export LC_CTYPE="UTF-8"
 export LC_TERMINAL="iTerm2"
 export LANG="en_UK.UTF-8"
+
+# oh-my-posh configuration
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/oh-my-posh.toml)"
+
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh)"
+fi
 
