@@ -313,7 +313,15 @@ vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:lis
 
 vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
 vim.keymap.set("n", "<C-M-n>", function() harpoon:list():next() end)
-
 -- End of Harpoon setup
 
 vim.keymap.set("n", "<h-\">", "")
+vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true })
+
+vim.opt.list = true
+vim.opt.listchars = {trail = '_', tab='>>'}
+
+vim.opt.autoindent = true
+vim.opt.expandtab = false 
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
