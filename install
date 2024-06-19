@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [! -d "~/.config" ] ; then
+	sudo mkdir "~/.config"
+fi
+
+sudo mv ./nvim "~/.config"
+sudo mv ./ohmyposh "~/.config"
+sudo mv ./wezterm "~/.config"
+
